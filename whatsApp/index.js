@@ -23,23 +23,18 @@ main().then(() => {
     console.log(`error while connecting to the DataBase : ${err}`);
 }))
 
-const chat1 = new chat({
-    from: "ismail",
-    to: "Ruwaid",
-    message: "Hey how are you",
-    createdAt: new Date()
-})
-chat1.save().then(res => {
-    console.log(res)
-}).catch(err => {
-    console.log(err);
-})
 
 
 // get request on the / route
 app.get("/", (req, res) => {
     console.log("this the root page")
     res.send("This is the root route");
+})
+
+app.get("/chats", async (req, res) => {
+    const chats = await chat.find();
+    console.log(chats);
+    res.render("allChats.ejs", { chats });
 })
 
 
