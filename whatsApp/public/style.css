@@ -13,3 +13,7 @@ body{
     padding: 5px 15px;
     border-radius: 16px;
 }
+a{
+    text-decoration: none;
+    color: black;
+}

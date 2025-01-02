@@ -11,27 +11,34 @@
 <body>
     <h1>All Chats</h1>
 
-    <% for(let chat of chats){ %>
-        <div class="chat">
-            <p class="frm">from :
-                <i>
-                    <%= chat.from %>
-                </i>
-            </p>
-            <div class="msg">
-                <p>
-                    <%= chat.message %>
+    <button><a href="/chats/new">Create NewChat.</a></button>
+    <br>
+    <br>
+
+    <div>
+        <% for(let chat of chats){ %>
+            <div class="chat">
+                <p class="frm">from :
+                    <i>
+                        <%= chat.from %>
+                    </i>
                 </p>
+                <div class="msg">
+                    <p>
+                        <%= chat.message %>
+                    </p>
+                </div>
+                <p class="to">Reciever :
+                    <i>
+                        <%= chat.to%>
+                    </i>
+                </p>
+                <hr>
             </div>
-            <p class="to">Reciever :
-                <i>
-                    <%= chat.to%>
-                </i>
-            </p>
-        </div>
-        <hr>
-        <br>
-        <% }%>
+            <br>
+            <br>
+            <% }%>
+    </div>
 </body>
 
 </html>

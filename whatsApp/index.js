@@ -34,8 +34,11 @@ app.get("/", (req, res) => {
 
 app.get("/chats", async (req, res) => {
     const chats = await chat.find();
-    console.log(chats);
     res.render("allChats.ejs", { chats });
+})
+
+app.get("/chats/new", (req, res) => {
+    res.send("this is the new chat page");
 })
 
 
