@@ -35,18 +35,19 @@ app.get("/", (req, res) => {
     res.send("This is the root route");
 })
 
+//  get request on /chats route
 app.get("/chats", async (req, res) => {
     const chats = await chat.find();
     res.render("allChats.ejs", { chats });
 })
 
 
-// get route on /chats/new
+// get request on /chats/new route
 app.get("/chats/new", (req, res) => {
     res.render("newChat.ejs");
 })
 
-// post route on /chats/new
+// post request on /chats/new route
 app.post("/chats", (req, res) => {
     const { from, message, to } = req.body;
     const newChat = new chat({
@@ -64,17 +65,25 @@ app.post("/chats", (req, res) => {
 
 })
 
-// creating edit route 
+// get reques edit route 
 app.get("/chats/:id/edit", async (req, res) => {
     const { id } = req.params;
     // res.render("edit.ejs",)
     const updatechat = await chat.findById(id)
     console.log(updatechat)
     res.render("edit.ejs", { updatechat });
-    // res.send("update");
 })
 
-
+// put request for updating message route
+app.put("/chats/:id", async (req, res) => {
+    const { id } = req.params;
+    const { message: newmessage } = req.body;
+    console.log(id)
+    console.log(newmessage);
+    const updatechat = await chat.findByIdAndUpdate(id, { message: newmessage });
+    console.log(updatechat)
+    res.redirect("/chats");
+})
 
 
 // listening the app on port :8080
