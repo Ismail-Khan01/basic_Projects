@@ -34,6 +34,3 @@ This is a basic replica of Quoro application.
 3. Commit your changes (`git commit -m 'Add some feature'`)
 4. Push to the branch (`git push origin feature-branch`)
 5. Open a pull request
-
-## License
-This project is licensed under the MIT License.
