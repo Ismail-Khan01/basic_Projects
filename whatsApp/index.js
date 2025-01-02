@@ -48,7 +48,7 @@ app.get("/chats/new", (req, res) => {
 })
 
 // post request on /chats/new route
-app.post("/chats", (req, res) => {
+app.post("/chats", async (req, res) => {
     const { from, message, to } = req.body;
     const newChat = new chat({
         from: from,
@@ -56,11 +56,7 @@ app.post("/chats", (req, res) => {
         message: message,
         createdAt: new Date()
     })
-    newChat.save().then(res => {
-        console.log(res)
-    }).catch(err => {
-        console.log(err);
-    })
+    await newChat.save()
     res.redirect("/chats");
 
 })
@@ -68,9 +64,7 @@ app.post("/chats", (req, res) => {
 // get reques edit route 
 app.get("/chats/:id/edit", async (req, res) => {
     const { id } = req.params;
-    // res.render("edit.ejs",)
     const updatechat = await chat.findById(id)
-    console.log(updatechat)
     res.render("edit.ejs", { updatechat });
 })
 
@@ -78,10 +72,14 @@ app.get("/chats/:id/edit", async (req, res) => {
 app.put("/chats/:id", async (req, res) => {
     const { id } = req.params;
     const { message: newmessage } = req.body;
-    console.log(id)
-    console.log(newmessage);
-    const updatechat = await chat.findByIdAndUpdate(id, { message: newmessage });
-    console.log(updatechat)
+    const updatechat = await chat.findByIdAndUpdate(id, { message: newmessage }, { runValidators: true, new: true });
+    res.redirect("/chats");
+})
+
+// delete request for deleteting chat 
+app.delete("/chats/:id", async (req, res) => {
+    const { id } = req.params;
+    await chat.findByIdAndDelete(id);
     res.redirect("/chats");
 })
 
