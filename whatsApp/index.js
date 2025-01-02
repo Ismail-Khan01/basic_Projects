@@ -61,6 +61,18 @@ app.post("/chats", (req, res) => {
 
 })
 
+// creating edit route 
+app.get("/chats/:id", (req, res) => {
+    const { id } = req.params;
+    // res.render("edit.ejs",)
+    chat.findById(id).then(res => {
+        console.log(res)
+    }).catch(err => {
+        console.log(err);
+    })
+    res.send("this is update page");
+})
+
 
 // listening the app on port :8080
 app.listen(port, () => {

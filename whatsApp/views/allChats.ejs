@@ -34,6 +34,12 @@
                     </i>
                 </p>
                 <hr>
+                <p> Time :
+                    <%= chat.createdAt.toString().split(" ")[4] %>
+                    <br>
+                    <%= chat.createdAt.toString().split(" ").slice(0,4).join(" ")%>
+                </p>
+                <button><a href=" /chats/<%=chat.id%>">Edit message</a></button>
             </div>
             <br>
             <br>
