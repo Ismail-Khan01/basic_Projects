@@ -17,3 +17,16 @@ a{
     text-decoration: none;
     color: black;
 }
+.message{
+    height: 200px;
+    width: 200px;
+    resize: none;
+}
+.btn{
+    background-color: aliceblue;
+    color: black;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}

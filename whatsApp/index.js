@@ -38,7 +38,7 @@ app.get("/chats", async (req, res) => {
 })
 
 app.get("/chats/new", (req, res) => {
-    res.send("this is the new chat page");
+    res.render("newChat.ejs");
 })
 
 
