@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>update Message</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <form action="/chats/<%=updatechat.id%>" method="post">
+        <div class="chat">
+            <p class="frm">from :
+                <i>
+                    <%= updatechat.from %>
+                </i>
+            </p>
+            <div>
+                <textarea name="message" id="" class="message"><%= updatechat.message %>
+
+            </textarea>
+            </div>
+            <p class="to">Reciever :
+                <i>
+                    <%= updatechat.to%>
+                </i>
+            </p>
+            <hr>
+            <p> Time :
+                <%= updatechat.createdAt.toString().split(" ")[4] %>
+            <br>
+            <%= updatechat.createdAt.toString().split(" ").slice(0,4).join(" ")%>
+        </p>
+        <button><a href=" /chats/<%=updatechat.id%>/edit">Edit message</a></button>
+        </div>
+    </form>
+</body>
+
+</html>

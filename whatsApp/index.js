@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 const port = 8080;
 const chat = require("./models/chat");
+const methodOverride = require("method-override");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"))
@@ -11,6 +12,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // reques body parser
 app.use(express.urlencoded({ extended: true }));
+
+app.use(methodOverride('_method'));
 
 
 
@@ -62,16 +65,16 @@ app.post("/chats", (req, res) => {
 })
 
 // creating edit route 
-app.get("/chats/:id", (req, res) => {
+app.get("/chats/:id/edit", async (req, res) => {
     const { id } = req.params;
     // res.render("edit.ejs",)
-    chat.findById(id).then(res => {
-        console.log(res)
-    }).catch(err => {
-        console.log(err);
-    })
-    res.send("this is update page");
+    const updatechat = await chat.findById(id)
+    console.log(updatechat)
+    res.render("edit.ejs", { updatechat });
+    // res.send("update");
 })
+
+
 
 
 // listening the app on port :8080
