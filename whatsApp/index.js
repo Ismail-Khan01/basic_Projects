@@ -37,8 +37,28 @@ app.get("/chats", async (req, res) => {
     res.render("allChats.ejs", { chats });
 })
 
+
+// get route on /chats/new
 app.get("/chats/new", (req, res) => {
     res.render("newChat.ejs");
+})
+
+// post route on /chats/new
+app.post("/chats", (req, res) => {
+    const { from, message, to } = req.body;
+    const newChat = new chat({
+        from: from,
+        to: to,
+        message: message,
+        createdAt: new Date()
+    })
+    newChat.save().then(res => {
+        console.log(res)
+    }).catch(err => {
+        console.log(err);
+    })
+    res.redirect("/chats");
+
 })
 
 
